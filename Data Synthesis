@@ -1,0 +1,21 @@
+import openai
+
+openai.api_key = "your_openai_api_key"
+
+def summarize_data(data):
+    prompt = f"Summarize the following competitor intelligence:\n\n{data}"
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return response['choices'][0]['message']['content']
+
+# Combine data from all sources
+combined_data = {
+    "commits": commits,
+    "job_postings": job_postings,
+    "reviews": review_insights,
+    "pricing": pricing_info
+}
+summary = summarize_data(str(combined_data))
+print(summary)
