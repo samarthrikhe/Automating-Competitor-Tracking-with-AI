@@ -1,0 +1,7 @@
+Schedule scripts using cron jobs or task schedulers.
+Use n8n to trigger all scripts daily.
+Pipeline flows:
+GitHub API → Data Extractor
+Web Scrapers → Job Posting and Pricing Analysis
+Claude → Daily Summary
+Notion API → Dashboard Update
