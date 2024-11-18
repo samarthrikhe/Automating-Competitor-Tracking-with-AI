@@ -1,0 +1,20 @@
+import requests
+from datetime import datetime, timedelta
+
+GITHUB_TOKEN = "your_github_token"
+ORG_NAME = "competitor_org_name"
+REPO_NAME = "competitor_repo_name"
+
+def get_recent_commits(org, repo):
+    url = f"https://api.github.com/repos/{org}/{repo}/commits"
+    headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+    since_date = (datetime.utcnow() - timedelta(days=1)).isoformat() + "Z"
+    params = {"since": since_date}
+    response = requests.get(url, headers=headers, params=params)
+    commits = response.json()
+    for commit in commits:
+        print(f"Commit: {commit['commit']['message']}, Date: {commit['commit']['author']['date']}")
+    return commits
+
+# Run the function
+commits = get_recent_commits(ORG_NAME, REPO_NAME)
