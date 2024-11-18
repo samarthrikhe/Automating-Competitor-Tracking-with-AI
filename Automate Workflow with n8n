@@ -1,0 +1,5 @@
+Set up the following in n8n:
+
+HTTP Request Nodes: Connect GitHub, job posting scraper, app review extractor, and pricing scraper.
+Custom Python Code Nodes: Use the above Python scripts for data extraction.
+Integration Nodes: Send data to Claude for synthesis (e.g., via OpenAI API).
