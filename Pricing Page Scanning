@@ -1,0 +1,17 @@
+import requests
+from bs4 import BeautifulSoup
+
+def scrape_pricing_page(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    prices = []
+    for tier in soup.select('.pricing-tier'):
+        name = tier.select_one('.tier-name').text
+        price = tier.select_one('.tier-price').text
+        prices.append({"name": name, "price": price})
+    return prices
+
+# Example usage
+pricing_url = "https://competitor.com/pricing"
+pricing_info = scrape_pricing_page(pricing_url)
+print(pricing_info)
