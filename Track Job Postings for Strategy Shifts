@@ -1,0 +1,17 @@
+import requests
+from bs4 import BeautifulSoup
+
+def scrape_job_postings(company_url):
+    response = requests.get(company_url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    jobs = []
+    for job in soup.select('.job-listing'):
+        title = job.select_one('.job-title').text
+        location = job.select_one('.job-location').text
+        jobs.append({"title": title, "location": location})
+    return jobs
+
+# Example usage
+company_careers_url = "https://competitor.com/careers"
+job_postings = scrape_job_postings(company_careers_url)
+print(job_postings)
